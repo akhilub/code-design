@@ -30,7 +30,7 @@ def createparkinglot(size: int) -> ParkingLot:
 
 def parkvehicle(parkinglot: ParkingLot, vehicleid: str, vehicletype: str) -> bool:
     """Park a vehicle in the parking lot"""
-    for spot in parking_lot["spots"]:
+    for spot in parkinglot["spots"]:
         if spot["available"]:
             spot["available"] = False
             spot["vehicle"] = {"id": vehicleid, "type": vehicletype}
@@ -41,7 +41,7 @@ def parkvehicle(parkinglot: ParkingLot, vehicleid: str, vehicletype: str) -> boo
 
 def unparkvehicle(parkinglot: ParkingLot, spot_id: str) -> bool:
     """Unpark a vehicle from the parking lot"""
-    for spot in parking_lot["spots"]:
+    for spot in parkinglot["spots"]:
         if spot["id"] == spot_id:
             if not spot["available"]:
                 spot["available"] = True
@@ -57,24 +57,24 @@ def unparkvehicle(parkinglot: ParkingLot, spot_id: str) -> bool:
 def displayparkinglot(parkinglot: ParkingLot) -> None:
     """Display the parking lot status"""
     print("Parking Lot Status:")
-    for spot in parking_lot["spots"]:
+    for spot in parkinglot["spots"]:
         if spot["available"]:
             print(f"Spot {spot['id']}: Available")
         else:
             print(f"Spot {spot['id']}: Occupied by vehicle {spot['vehicle']['id']}")
 
 # Example usage
-parking_lot = createparkinglot(5)
-displayparkinglot(parking_lot)
+parkinglot = createparkinglot(5)
+displayparkinglot(parkinglot)
 
-parkvehicle(parking_lot, "V1", "Car")
-parkvehicle(parking_lot, "V2", "Truck")
+parkvehicle(parkinglot, "V1", "Car")
+parkvehicle(parkinglot, "V2", "Truck")
 
-displayparkinglot(parking_lot)
+displayparkinglot(parkinglot)
 
-unparkvehicle(parking_lot, "SP1")
+unparkvehicle(parkinglot, "SP1")
 
-displayparkinglot(parking_lot)
+displayparkinglot(parkinglot)
 ```
 
 **Explanation:**
